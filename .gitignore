@@ -1,0 +1,49 @@
+# Environment
+.venv/
+venv/
+env/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Logs & Data
+logs/
+*.log
+# data/*.csv   # if datasets are large
+# models/*.joblib  # if you prefer not to commit large models
+
+# IDE
+.idea/          # PyCharm
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.env
+volumes/
