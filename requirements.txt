@@ -5,3 +5,6 @@ joblib
 sqlalchemy
 pydantic
 python-dotenv
+pandas
+numpy
+matplotlib

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 import os
+from .routers.detection import router as detection_router
 
 load_dotenv()
 
@@ -13,3 +14,5 @@ def home():
 @app.get("/health")
 def health():
     return {"status": "healthy"}
+
+app.include_router(detection_router)
