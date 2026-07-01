@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from ..services.ml_inference import predict_url
+from ..services.logging_service import log_detection
 
 router = APIRouter(prefix="/api", tags=["detection"])
 
@@ -19,6 +20,15 @@ class PredictionResponse(BaseModel):
 @router.post("/predict", response_model=PredictionResponse)
 def predict_url_endpoint(request: URLRequest):
     result = predict_url(request.url)
+
+    # Log to database
+    log_detection(
+        url=request.url,
+        is_phishing=result["is_phishing"],
+        confidence=result["confidence"],
+        message="Phishing detected!" if result["is_phishing"] else "Looks safe."
+    )
+
     return {
         "url": request.url,
         "is_phishing": result["is_phishing"],
