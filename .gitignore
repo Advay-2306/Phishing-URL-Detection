@@ -35,7 +35,7 @@ logs/
 # models/*.joblib  # if you prefer not to commit large models
 
 # IDE
-.idea/          # PyCharm
+.idea/
 .vscode/
 *.swp
 *.swo
