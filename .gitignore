@@ -31,8 +31,7 @@ MANIFEST
 # Logs & Data
 logs/
 *.log
-# data/*.csv   # if datasets are large
-# models/*.joblib  # if you prefer not to commit large models
+phishing_logs.db
 
 # IDE
 .idea/
