@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   ml-service:
     build: .
@@ -9,5 +7,13 @@ services:
       - .:/app
     environment:
       - PYTHONUNBUFFERED=1
+    depends_on:
+      - db
+
+  db:
+    image: busybox
+    command: tail -f /dev/null
+    volumes:
+      - ./phishing_logs.db:/phishing_logs.db
 
   # Proxy service to be added later
