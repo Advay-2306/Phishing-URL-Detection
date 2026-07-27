@@ -48,13 +48,12 @@ cd Phishing-URL-Detection
 docker compose up --build -d
 ```
 
-This builds the images and starts three containers:
+This builds the images and starts two containers:
 
 | Service       | Purpose                                   | URL / Port |
 |---------------|--------------------------------------------|------|
 | `frontend`    | React + Tailwind SPA (nginx)               | http://localhost:8080 |
-| `ml-service`  | The FastAPI app                            | http://localhost:8000 |
-| `db`          | A placeholder `busybox` container that just keeps the SQLite file's volume mounted | — |
+| `ml-service`  | The FastAPI app (SQLite lives on disk here via its own bind mount) | http://localhost:8000 |
 
 > The frontend publishes host port **8080** (host `:3000` is commonly taken). Change it in `docker-compose.yml` if you like — then update `ALLOWED_ORIGINS` to match.
 
@@ -66,7 +65,7 @@ Check it's running:
 docker compose ps
 ```
 
-You should see `frontend-1`, `ml-service-1`, and `db-1` as `Up`. Open the app at **http://localhost:8080**.
+You should see `frontend-1` and `ml-service-1` as `Up`. Open the app at **http://localhost:8080**.
 
 ### Configuration (`.env`)
 
