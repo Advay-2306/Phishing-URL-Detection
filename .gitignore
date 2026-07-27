@@ -46,3 +46,8 @@ Thumbs.db
 # Docker
 *.env
 volumes/
+
+.claude/
+
+# ML model artifacts (too large for git; regenerate via train_model*.py / train_model_calibrated.py)
+models/*.joblib
