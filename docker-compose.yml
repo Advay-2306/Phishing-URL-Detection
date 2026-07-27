@@ -7,8 +7,25 @@ services:
       - .:/app
     environment:
       - PYTHONUNBUFFERED=1
+      # Admin auth (see .env)
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - JWT_SECRET=${JWT_SECRET:-dev-insecure-secret-change-me}
+      - JWT_EXPIRE_HOURS=${JWT_EXPIRE_HOURS:-12}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080,http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173}
     depends_on:
       - db
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Vite bakes this at build time.
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+    ports:
+      - "8080:80"
+    depends_on:
+      - ml-service
 
   db:
     image: busybox

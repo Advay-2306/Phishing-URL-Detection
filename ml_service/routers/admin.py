@@ -1,5 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from ..database.session import SessionLocal
+from ..services.auth import require_admin
 from models.sqlalchemy_models import DetectionLog
 from datetime import datetime
 import pytz
@@ -8,7 +9,7 @@ router = APIRouter(prefix="/api", tags=["admin"])
 
 
 @router.get("/logs")
-def get_logs(limit: int = 50):
+def get_logs(limit: int = 50, admin: dict = Depends(require_admin)):
     db = SessionLocal()
     logs = db.query(DetectionLog).order_by(DetectionLog.timestamp.desc()).limit(limit).all()
     db.close()

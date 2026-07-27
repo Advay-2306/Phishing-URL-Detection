@@ -11,3 +11,4 @@ matplotlib
 pytz
 mitmproxy
 httpx
+pyjwt
